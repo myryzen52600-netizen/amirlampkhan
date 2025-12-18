@@ -42,14 +42,15 @@
             justify-content: center;
             background: radial-gradient(circle at center, #111 0%, #000 100%);
             transition: transform 0.8s cubic-bezier(0.85, 0, 0.15, 1), opacity 0.5s;
+            padding: 20px;
         }
 
         .hub-card {
             flex: 1;
-            height: 55vh;
-            max-width: 380px;
-            margin: 15px;
-            border-radius: 32px;
+            height: 50vh;
+            max-width: 320px;
+            margin: 10px;
+            border-radius: 24px;
             position: relative;
             overflow: hidden;
             cursor: pointer;
@@ -61,7 +62,7 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 30px;
+            padding: 25px;
         }
 
         .hub-card.rivalry-card {
@@ -69,13 +70,17 @@
             background: linear-gradient(to bottom, rgba(212, 175, 55, 0.05), rgba(0,0,0,0));
         }
 
-        .hub-card:hover { transform: scale(1.04); background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); }
-        .hub-card.rivalry-card:hover { border-color: rgba(212, 175, 55, 0.5); background: rgba(212, 175, 55, 0.08); }
-
-        .gold-icon {
-            color: var(--gold-solid);
-            filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.4));
+        .hub-card.campaign-card {
+            border-color: rgba(59, 130, 246, 0.2);
+            background: linear-gradient(to bottom, rgba(59, 130, 246, 0.05), rgba(0,0,0,0));
         }
+
+        .hub-card:hover { transform: translateY(-10px); background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); }
+        .hub-card.rivalry-card:hover { border-color: rgba(212, 175, 55, 0.5); background: rgba(212, 175, 55, 0.08); }
+        .hub-card.campaign-card:hover { border-color: rgba(59, 130, 246, 0.5); background: rgba(59, 130, 246, 0.08); }
+
+        .gold-icon { color: var(--gold-solid); filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.4)); }
+        .blue-icon { color: #3b82f6; filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.4)); }
 
         .page-container {
             position: absolute;
@@ -103,59 +108,6 @@
             cursor: pointer;
         }
 
-        /* Filter Pills */
-        .filter-pill {
-            padding: 8px 20px;
-            border-radius: 100px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            color: rgba(255,255,255,0.5);
-            font-size: 10px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .filter-pill.active {
-            background: white;
-            color: black;
-            border-color: white;
-        }
-
-        /* Mobile Optimize Control */
-        .optimize-btn {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            z-index: 2500;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: white;
-            padding: 12px 20px;
-            border-radius: 50px;
-            font-size: 9px;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .optimize-btn.active { background: #fff; color: #000; }
-
-        /* Mobile Classes */
-        body.mobile-mode #main-hub { flex-direction: column; padding: 20px; overflow-y: auto;}
-        body.mobile-mode .hub-card { width: 100%; height: auto; min-height: 250px; margin: 10px 0; }
-        body.mobile-mode .split-container { flex-direction: column; }
-        body.mobile-mode .split-container:hover .split { flex: 1; }
-        body.mobile-mode .modal-body { flex-direction: column; height: 95%; overflow-y: auto; }
-        body.mobile-mode .info-sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        body.mobile-mode .img-hero { height: 300px; flex-shrink: 0; }
-
         /* Rivals Content */
         .rivals-content { height: 100vh; overflow-y: scroll; scroll-snap-type: y mandatory; }
         section { height: 100vh; scroll-snap-align: start; position: relative; }
@@ -175,16 +127,8 @@
             filter: brightness(0.6);
         }
 
-        .split-container:hover .split { 
-            flex: 0.6; 
-            filter: brightness(0.15) blur(12px); 
-        }
-
-        .split-container .split:hover { 
-            flex: 1.4; 
-            filter: brightness(1) blur(0px); 
-            z-index: 5;
-        }
+        .split-container:hover .split { flex: 0.6; filter: brightness(0.15) blur(12px); }
+        .split-container .split:hover { flex: 1.4; filter: brightness(1) blur(0px); z-index: 5; }
 
         .brand-wrapper {
             z-index: 10;
@@ -206,18 +150,9 @@
             opacity: 1;
             background: rgba(0, 0, 0, 0.4);
             border-color: rgba(255, 255, 255, 0.4);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
         }
 
-        .brand-title { 
-            font-size: clamp(1.2rem, 3.5vw, 2.8rem); 
-            font-weight: 900; 
-            text-transform: uppercase; 
-            letter-spacing: 6px; 
-            line-height: 1;
-            color: #fff;
-            text-shadow: 0 4px 10px rgba(0,0,0,0.5);
-        }
+        .brand-title { font-size: clamp(1.2rem, 3.5vw, 2.8rem); font-weight: 900; text-transform: uppercase; letter-spacing: 6px; color: #fff; }
         
         .section-label { 
             position: absolute; top: 40px; left: 50%; transform: translateX(-50%); z-index: 100; 
@@ -225,69 +160,32 @@
             letter-spacing: 5px; border-radius: 2px;
         }
 
-        .modal-overlay { 
-            position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 3000; opacity: 0; visibility: hidden; 
-            display: flex; align-items: center; justify-content: center; transition: 0.5s; 
-        }
+        /* Modal */
+        .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 3000; opacity: 0; visibility: hidden; display: flex; align-items: center; justify-content: center; transition: 0.5s; }
         .modal-overlay.active { opacity: 1; visibility: visible; }
         .modal-body { width: 95%; height: 90%; display: flex; position: relative; background: #000; border: 1px solid rgba(255,255,255,0.1); }
-
-        .info-sidebar {
-            width: 400px; height: 100%; background: #000; padding: 60px 40px; display: flex; flex-direction: column;
-            border-right: 1px solid rgba(255,255,255,0.1); z-index: 10; flex-shrink: 0; overflow-y: auto;
-        }
-
+        .info-sidebar { width: 400px; height: 100%; padding: 60px 40px; overflow-y: auto; border-right: 1px solid rgba(255,255,255,0.1); }
         .img-hero { flex-grow: 1; height: 100%; position: relative; overflow: hidden; }
         .img-hero img { width: 100%; height: 100%; object-fit: cover; }
-
         .spec-item { margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 15px; }
         .spec-label { font-size: 9px; font-weight: 800; color: rgba(255,255,255,0.4); text-transform: uppercase; }
         .spec-value { font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 800; color: #fff; }
 
-        /* Archive Grid - Rectangular Styling */
-        .archive-item { 
-            background: #000; 
-            padding: 30px; 
-            transition: 0.4s; 
-            cursor: pointer; 
-            position: relative; 
-            overflow: hidden; 
-            aspect-ratio: 16 / 9; 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: flex-end; 
-            border: 1px solid rgba(255,255,255,0.05); 
-            animation: fadeIn 0.5s ease forwards;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .archive-bg { position: absolute; inset: 0; opacity: 0.25; object-fit: cover; transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1); }
+        /* Archive Grid */
+        .archive-item { background: #000; padding: 30px; transition: 0.4s; cursor: pointer; position: relative; overflow: hidden; aspect-ratio: 16 / 9; display: flex; flex-direction: column; justify-content: flex-end; border: 1px solid rgba(255,255,255,0.05); }
+        .archive-bg { position: absolute; inset: 0; opacity: 0.25; object-fit: cover; transition: 0.6s; }
         .archive-item:hover .archive-bg { opacity: 0.7; transform: scale(1.05); }
-        
-        .archive-item::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 60%);
-            z-index: 5;
-        }
+        .archive-item::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 60%); z-index: 5; }
 
-        /* Background Graphics */
-        .bg-text {
-            position: fixed;
-            bottom: -5vh;
-            left: 0;
-            width: 100%;
-            font-size: 20vw;
-            font-weight: 900;
-            color: rgba(255,255,255,0.02);
-            z-index: -1;
-            white-space: nowrap;
-            pointer-events: none;
-            text-transform: uppercase;
-        }
+        /* Mobile Optimize Control */
+        .optimize-btn { position: fixed; bottom: 25px; right: 25px; z-index: 2500; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); color: white; padding: 12px 20px; border-radius: 50px; font-size: 9px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 8px; }
+        body.mobile-mode #main-hub { flex-direction: column; overflow-y: auto; justify-content: flex-start; padding-top: 80px; }
+        body.mobile-mode .hub-card { width: 100%; min-height: 200px; max-width: 100%; margin: 10px 0; }
+
+        .filter-pill { padding: 8px 20px; border-radius: 100px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.5); font-size: 10px; font-weight: 700; cursor: pointer; }
+        .filter-pill.active { background: white; color: black; border-color: white; }
+
+        .bg-text { position: fixed; bottom: -5vh; left: 0; width: 100%; font-size: 20vw; font-weight: 900; color: rgba(255,255,255,0.02); z-index: -1; white-space: nowrap; pointer-events: none; text-transform: uppercase; }
     </style>
 </head>
 <body>
@@ -300,13 +198,23 @@
     </button>
 
     <div id="main-hub">
+        <!-- Rivals Card -->
         <div class="hub-card rivalry-card" onclick="showPage('rivals-page')">
             <i class="fas fa-bolt text-4xl mb-5 gold-icon"></i>
             <h2 class="heading-font text-2xl font-black uppercase">Greatest Rivals</h2>
             <p class="text-zinc-500 text-[9px] tracking-[0.3em] uppercase mt-2">Bugatti vs Koenigsegg</p>
         </div>
+
+        <!-- Campaign Card -->
+        <div class="hub-card campaign-card" onclick="openCampaign()">
+            <i class="fas fa-trophy text-4xl mb-5 blue-icon"></i>
+            <h2 class="heading-font text-2xl font-black uppercase">Campaign</h2>
+            <p class="text-zinc-500 text-[9px] tracking-[0.3em] uppercase mt-2">The Speed Odyssey</p>
+        </div>
+
+        <!-- Archive Card -->
         <div class="hub-card" onclick="showPage('archive-page')">
-            <i class="fas fa-folder-open text-4xl mb-5 text-blue-500"></i>
+            <i class="fas fa-folder-open text-4xl mb-5 text-white/40"></i>
             <h2 class="heading-font text-2xl font-black uppercase">Archive</h2>
             <p class="text-zinc-500 text-[9px] tracking-[0.3em] uppercase mt-2">Technical Specs</p>
         </div>
@@ -314,58 +222,58 @@
 
     <button id="back-to-hub" class="back-btn hidden" onclick="goHome()">HOME</button>
 
+    <!-- Rivals Page -->
     <div id="rivals-page" class="page-container">
         <div class="rivals-content">
             <section>
-                <div class="section-label heading-font">LIMITED LEGENDS</div>
+                <div class="section-label heading-font">THE MODERN PEAK</div>
                 <div class="split-container">
-                    <div class="split" style="background-image: url('https://cimg2.ibsrv.net/ibimg/hgm/1920x1080-1/100/869/final-bugatti-centodieci_100869554.jpg')" onclick="openModal('centodieci')">
-                        <div class="brand-wrapper">
-                            <h1 class="brand-title heading-font">CENTODIECI</h1>
-                        </div>
+                    <div class="split" style="background-image: url('https://cdnb.artstation.com/p/assets/images/images/082/463/815/large/alex-o-rourke-side-view-4k-w.jpg?1733071670')" onclick="openModal('mistral')">
+                        <div class="brand-wrapper"><h1 class="brand-title heading-font">MISTRAL</h1></div>
                     </div>
-                    <div class="split" style="background-image: url('https://en.wheelz.me/wp-content/uploads/2024/04/Koenigsegg-CCX-5.webp')" onclick="openModal('ccx')">
-                        <div class="brand-wrapper">
-                            <h1 class="brand-title heading-font">CCX</h1>
-                        </div>
+                    <div class="split" style="background-image: url('https://koenigsegg-cdn-g7eehhd6f0ewcaff.z02.azurefd.net/drupal/styles/autox720/azure/2022-01/KenoZache_IMG_3038_%40kenozache%20%40esser_automotive_0.jpg?itok=0PBBZc-O')" onclick="openModal('jesko')">
+                        <div class="brand-wrapper"><h1 class="brand-title heading-font">JESKO</h1></div>
                     </div>
                 </div>
             </section>
-            
             <section>
-                <div class="section-label heading-font">HYPER HYBRIDS</div>
+                <div class="section-label heading-font">ENGINEERING ANOMALIES</div>
                 <div class="split-container">
                     <div class="split" style="background-image: url('https://media.wired.com/photos/5927284ff3e2356fd800b9b4/master/pass/03_CHIRON_34-front_WEB.jpg')" onclick="openModal('chiron')">
-                        <div class="brand-wrapper">
-                            <h1 class="brand-title heading-font">CHIRON</h1>
-                        </div>
+                        <div class="brand-wrapper"><h1 class="brand-title heading-font">CHIRON</h1></div>
                     </div>
                     <div class="split" style="background-image: url('https://hips.hearstapps.com/mtg-prod/65b2b2df4627110008d7ac16/koenigsegg-regera.jpg')" onclick="openModal('regera')">
-                        <div class="brand-wrapper">
-                            <h1 class="brand-title heading-font">REGERA</h1>
-                        </div>
+                        <div class="brand-wrapper"><h1 class="brand-title heading-font">REGERA</h1></div>
                     </div>
                 </div>
             </section>
-
+            <!-- RE-ADDED AGERA R TO THE RIVALS FEED -->
             <section>
-                <div class="section-label heading-font">THE GENESIS</div>
+                <div class="section-label heading-font">THE SPEED WAR BEGINS</div>
                 <div class="split-container">
                     <div class="split" style="background-image: url('https://wallpaperswide.com/download/bugatti_veyron_4-wallpaper-1920x1200.jpg')" onclick="openModal('veyron')">
-                        <div class="brand-wrapper">
-                            <h1 class="brand-title heading-font">VEYRON</h1>
-                        </div>
+                        <div class="brand-wrapper"><h1 class="brand-title heading-font">VEYRON</h1></div>
                     </div>
                     <div class="split" style="background-image: url('https://www.hdcarwallpapers.com/walls/2016_koenigsegg_agera_final_one_of_one-wide.jpg')" onclick="openModal('agera')">
-                        <div class="brand-wrapper">
-                            <h1 class="brand-title heading-font">AGERA R</h1>
-                        </div>
+                        <div class="brand-wrapper"><h1 class="brand-title heading-font">AGERA R</h1></div>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div class="section-label heading-font">LIMITED LEGENDS</div>
+                <div class="split-container">
+                    <div class="split" style="background-image: url('https://cdn.motor1.com/images/mgl/E61MyM/s1/2022-bugatti-centodieci.jpg')" onclick="openModal('centodieci')">
+                        <div class="brand-wrapper"><h1 class="brand-title heading-font">CENTODIECI</h1></div>
+                    </div>
+                    <div class="split" style="background-image: url('https://en.wheelz.me/wp-content/uploads/2024/04/Koenigsegg-CCX-5.webp')" onclick="openModal('ccx')">
+                        <div class="brand-wrapper"><h1 class="brand-title heading-font">CCX</h1></div>
                     </div>
                 </div>
             </section>
         </div>
     </div>
 
+    <!-- Archive Page -->
     <div id="archive-page" class="page-container overflow-y-auto">
         <div class="p-10 pt-24 bg-zinc-950 min-h-screen">
             <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
@@ -373,8 +281,6 @@
                     <h2 class="heading-font text-5xl font-black uppercase tracking-tighter">The Registry</h2>
                     <p class="text-zinc-500 text-[10px] tracking-widest uppercase mt-2">Filter by Powertrain Architecture</p>
                 </div>
-                
-                <!-- Engine Filter Nav -->
                 <div class="flex flex-wrap gap-2" id="filter-container">
                     <button class="filter-pill active" onclick="setFilter('all')">All Engines</button>
                     <button class="filter-pill" onclick="setFilter('W16')">W16 Quad-Turbo</button>
@@ -382,8 +288,7 @@
                     <button class="filter-pill" onclick="setFilter('Hybrid')">Hybrid</button>
                 </div>
             </div>
-
-            <div id="archive-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-6"></div>
+            <div id="archive-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
         </div>
     </div>
 
@@ -393,40 +298,23 @@
 
     <script>
         const carData = {
-            centodieci: { title: "Centodieci", brand: "Bugatti", category: "W16", desc: "A modern tribute to the legendary EB110, delivering massive power and distinctive styling.", hp: 1600, engine: "8.0L W16 Quad-Turbo", topSpeed: "380 KM/H", accel: "2.4S", img: "https://cimg2.ibsrv.net/ibimg/hgm/1920x1080-1/100/869/final-bugatti-centodieci_100869554.jpg" },
-            ccx: { title: "CCX", brand: "Koenigsegg", category: "V8", desc: "The first Koenigsegg to use a bespoke in-house engine, designed for global performance.", hp: 806, engine: "4.7L V8 Twin-Supercharged", topSpeed: "395 KM/H", accel: "3.2S", img: "https://en.wheelz.me/wp-content/uploads/2024/04/Koenigsegg-CCX-5.webp" },
-            chiron: { title: "Chiron", brand: "Bugatti", category: "W16", desc: "The peak of luxury and raw engineering power, setting records in both speed and refinement.", hp: 1500, engine: "8.0L W16 Quad-Turbo", topSpeed: "420 KM/H", accel: "2.4S", img: "https://media.wired.com/photos/5927284ff3e2356fd800b9b4/master/pass/03_CHIRON_34-front_WEB.jpg" },
-            regera: { title: "Regera", brand: "Koenigsegg", category: "Hybrid", desc: "Direct-drive hybrid system with no traditional gearbox, combining luxury with explosive hybrid power.", hp: 1500, engine: "5.0L V8 HYBRID", topSpeed: "404 KM/H", accel: "2.8S", img: "https://hips.hearstapps.com/mtg-prod/65b2b2df4627110008d7ac16/koenigsegg-regera.jpg" },
+            mistral: { title: "W16 Mistral", brand: "Bugatti", category: "W16", desc: "The ultimate roadster. Bugatti's final road-going application of the legendary W16 engine.", hp: 1600, engine: "8.0L W16 Quad-Turbo", topSpeed: "420 KM/H", accel: "2.4S", img: "https://cdnb.artstation.com/p/assets/images/images/082/463/815/large/alex-o-rourke-side-view-4k-w.jpg?1733071670" },
+            jesko: { title: "Jesko Absolut", brand: "Koenigsegg", category: "V8", desc: "Designed to be the fastest Koenigsegg ever made, aiming for 500+ KM/H.", hp: 1600, engine: "5.0L V8 Twin-Turbo", topSpeed: "531 KM/H", accel: "2.5S", img: "https://koenigsegg-cdn-g7eehhd6f0ewcaff.z02.azurefd.net/drupal/styles/autox720/azure/2022-01/KenoZache_IMG_3038_%40kenozache%20%40esser_automotive_0.jpg?itok=0PBBZc-O" },
+            centodieci: { title: "Centodieci", brand: "Bugatti", category: "W16", desc: "A modern tribute to the EB110, delivering 1,600hp.", hp: 1600, engine: "8.0L W16 Quad-Turbo", topSpeed: "380 KM/H", accel: "2.4S", img: "https://cdn.motor1.com/images/mgl/E61MyM/s1/2022-bugatti-centodieci.jpg" },
+            ccx: { title: "CCX", brand: "Koenigsegg", category: "V8", desc: "The first Koenigsegg to use a bespoke in-house engine.", hp: 806, engine: "4.7L V8 Twin-Supercharged", topSpeed: "395 KM/H", accel: "3.2S", img: "https://en.wheelz.me/wp-content/uploads/2024/04/Koenigsegg-CCX-5.webp" },
+            chiron: { title: "Chiron", brand: "Bugatti", category: "W16", desc: "The peak of luxury and raw engineering power.", hp: 1500, engine: "8.0L W16 Quad-Turbo", topSpeed: "420 KM/H", accel: "2.4S", img: "https://media.wired.com/photos/5927284ff3e2356fd800b9b4/master/pass/03_CHIRON_34-front_WEB.jpg" },
+            regera: { title: "Regera", brand: "Koenigsegg", category: "Hybrid", desc: "Direct-drive hybrid system with no traditional gearbox.", hp: 1500, engine: "5.0L V8 HYBRID", topSpeed: "404 KM/H", accel: "2.8S", img: "https://hips.hearstapps.com/mtg-prod/65b2b2df4627110008d7ac16/koenigsegg-regera.jpg" },
             veyron: { title: "Veyron 16.4", brand: "Bugatti", category: "W16", desc: "The car that redefined the term 'Hypercar' for the 21st century.", hp: 1001, engine: "8.0L W16 Quad-Turbo", topSpeed: "407 KM/H", accel: "2.5S", img: "https://wallpaperswide.com/download/bugatti_veyron_4-wallpaper-1920x1200.jpg" },
-            agera: { title: "Agera R", brand: "Koenigsegg", category: "V8", desc: "A monster of aerodynamics and Swedish engineering, known for its extreme power-to-weight ratio.", hp: 1140, engine: "5.0L V8 TWIN-TURBO", topSpeed: "439 KM/H", accel: "2.8S", img: "https://www.hdcarwallpapers.com/walls/2016_koenigsegg_agera_final_one_of_one-wide.jpg" }
+            agera: { title: "Agera R", brand: "Koenigsegg", category: "V8", desc: "A monster of aerodynamics and Swedish engineering.", hp: 1140, engine: "5.0L V8 TWIN-TURBO", topSpeed: "439 KM/H", accel: "2.8S", img: "https://www.hdcarwallpapers.com/walls/2016_koenigsegg_agera_final_one_of_one-wide.jpg" }
         };
 
-        let currentFilter = 'all';
-
         function toggleMobileMode() {
-            const btn = document.getElementById('optimize-btn');
             document.body.classList.toggle('mobile-mode');
-            btn.classList.toggle('active');
-            if (document.body.classList.contains('mobile-mode')) {
-                btn.querySelector('span').innerText = 'DESKTOP MODE';
-            } else {
-                btn.querySelector('span').innerText = 'MOBILE OPTIMIZE';
-            }
         }
 
         function setFilter(category) {
-            currentFilter = category;
-            
-            // Update UI pills
-            const buttons = document.querySelectorAll('.filter-pill');
-            buttons.forEach(btn => {
-                btn.classList.remove('active');
-                if (btn.innerText.includes(category) || (category === 'all' && btn.innerText === 'All Engines')) {
-                    btn.classList.add('active');
-                }
-            });
-
-            renderArchive();
+            document.querySelectorAll('.filter-pill').forEach(btn => btn.classList.toggle('active', btn.innerText.includes(category) || (category === 'all' && btn.innerText === 'All Engines')));
+            renderArchive(category);
         }
 
         function showPage(id) {
@@ -434,7 +322,7 @@
             document.querySelectorAll('.page-container').forEach(p => p.classList.remove('active'));
             document.getElementById(id).classList.add('active');
             document.getElementById('back-to-hub').classList.remove('hidden');
-            if(id === 'archive-page') renderArchive();
+            if(id === 'archive-page') renderArchive('all');
         }
 
         function goHome() {
@@ -443,21 +331,32 @@
             document.getElementById('back-to-hub').classList.add('hidden');
         }
 
-        function renderArchive() {
+        function openCampaign() {
+            const modal = document.getElementById('modal');
+            const content = document.getElementById('modal-content');
+            content.innerHTML = `
+                <div class="p-20 w-full flex flex-col items-center justify-center text-center">
+                    <i class="fas fa-lock text-6xl mb-8 text-blue-500"></i>
+                    <h1 class="heading-font text-5xl font-black uppercase mb-4">Speed Odyssey</h1>
+                    <p class="text-zinc-500 max-w-md">The 2024 Campaign is currently locked. Complete the Registry and technical trials to unlock the road to 500 KM/H.</p>
+                    <button class="mt-10 px-10 py-4 border border-blue-500/50 text-blue-500 uppercase font-black text-xs tracking-widest hover:bg-blue-500 hover:text-white transition" onclick="closeModal()">Back to Hub</button>
+                </div>
+            `;
+            modal.classList.add('active');
+        }
+
+        function renderArchive(filter) {
             const grid = document.getElementById('archive-grid');
             grid.innerHTML = '';
-            
             Object.entries(carData).forEach(([id, car]) => {
-                // Filter Logic
-                if (currentFilter !== 'all' && car.category !== currentFilter) return;
-
+                if (filter !== 'all' && car.category !== filter) return;
                 const item = document.createElement('div');
-                item.className = 'archive-item rounded-lg';
+                item.className = 'archive-item';
                 item.innerHTML = `
                     <img src="${car.img}" class="archive-bg">
                     <div class="relative z-10">
-                        <p class="text-[10px] uppercase tracking-widest text-zinc-400 mb-1">${car.brand} • ${car.category}</p>
-                        <h3 class="heading-font text-3xl font-black uppercase tracking-tighter">${car.title}</h3>
+                        <p class="text-[10px] uppercase text-zinc-400 mb-1">${car.brand}</p>
+                        <h3 class="heading-font text-3xl font-black uppercase">${car.title}</h3>
                     </div>`;
                 item.onclick = () => openModal(id);
                 grid.appendChild(item);
@@ -474,22 +373,15 @@
                     <div class="spec-item"><p class="spec-label">Engine</p><p class="spec-value">${car.engine}</p></div>
                     <div class="spec-item"><p class="spec-label">Power</p><p class="spec-value">${car.hp} BHP</p></div>
                     <div class="spec-item"><p class="spec-label">V-MAX</p><p class="spec-value">${car.topSpeed}</p></div>
-                    <div class="spec-item"><p class="spec-label">0-100</p><p class="spec-value">${car.accel}</p></div>
                     <p class="mt-6 text-zinc-400 text-sm leading-relaxed">${car.desc}</p>
-                    <button class="mt-auto border border-white/20 py-4 text-[10px] tracking-[0.4em] font-black uppercase hover:bg-white hover:text-black transition" onclick="closeModal()">CLOSE DATA</button>
+                    <button class="mt-10 w-full border border-white/20 py-4 text-[10px] tracking-widest uppercase hover:bg-white hover:text-black transition" onclick="closeModal()">CLOSE</button>
                 </div>
-                <div class="img-hero">
-                    <img src="${car.img}">
-                </div>
+                <div class="img-hero"><img src="${car.img}"></div>
             `;
             document.getElementById('modal').classList.add('active');
         }
 
         function closeModal() { document.getElementById('modal').classList.remove('active'); }
-        
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeModal();
-        });
     </script>
 </body>
 </html>
